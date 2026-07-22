@@ -16,4 +16,6 @@ Automatically generates a README from your merged GitHub Pull Requests.
 5. Check your repository:  Readme.md, output/prs.json will be created
 
 
-
+Please view the video here to understand how to get tokens if you wish to test it locally! 
+https://youtu.be/xjL1scOXVPQ
+(futher guide on using it locally wil be given as soon as possible)
