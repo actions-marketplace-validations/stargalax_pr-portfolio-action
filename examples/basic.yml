@@ -1,0 +1,30 @@
+name: Test PR Portfolio Action
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run PR Portfolio
+        uses: ./   
+        with:
+          username: stargalax
+
+      - name: Commit generated files
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add README.md output/prs.json
+
+          git diff --cached --quiet || git commit -m "Update portfolio"
+
+          git push

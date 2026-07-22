@@ -1,0 +1,35 @@
+name: PR Portfolio Generator
+
+description: Generate a README from your merged GitHub pull requests
+
+author: stargalax
+
+inputs:
+  username:
+    description: GitHub username to fetch PRs for
+    required: true
+
+branding:
+  icon: git-pull-request
+  color: purple
+  
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies
+      shell: bash
+      run: |
+        pip install requests python-dotenv
+
+    - name: Fetch merged PRs
+      shell: bash
+      env:
+        GITHUB_USERNAME: ${{ inputs.username }}
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        python ${{ github.action_path }}/scripts/fetch_prs.py
+
+    - name: Generate README
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/scripts/generate_readme.py
