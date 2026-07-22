@@ -1,30 +1,38 @@
-name: Test PR Portfolio Action
+name: Update PR Portfolio
 
 on:
   workflow_dispatch:
+
+  schedule:
+    - cron: "0 */12 * * *"
 
 permissions:
   contents: write
 
 jobs:
-  test:
+  update:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run PR Portfolio
-        uses: ./   
+      - name: Generate PR Portfolio
+        uses: stargalax/pr-portfolio-action@main
         with:
-          username: stargalax
+          username: YOUR_GITHUB_USERNAME
 
-      - name: Commit generated files
+      - name: Check generated files
+        run: |
+          ls -la
+          ls -la output
+
+      - name: Commit changes
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
 
           git add README.md output/prs.json
 
-          git diff --cached --quiet || git commit -m "Update portfolio"
+          git diff --cached --quiet || git commit -m "Update PR portfolio"
 
           git push
