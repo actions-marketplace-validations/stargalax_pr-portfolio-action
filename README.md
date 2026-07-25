@@ -245,7 +245,10 @@ If you found this project useful, consider giving it a ⭐ on GitHub!
 
 It helps others discover the project and motivates future improvements.
 
-You can also send me suggestions and feature requests to this blog! 
+You can also send me suggestions and feature requests to this blog!  
+https://qiita.com/stargalax/items/67289fc5d04e2108f563
+
+
 ---
 
 # 📜 License
